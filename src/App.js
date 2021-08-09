@@ -1,55 +1,76 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-const CAP = 100;
+const GACHA_POOL_SIZE = 100;
+const GACHA_POOL = [];
 const SSR_RATE = 4;
+
+function PopulateGachaPool() {
+    //Populate the total size of rolls/pulls
+    for(let i = 0; i < GACHA_POOL_SIZE; i++) {
+      GACHA_POOL.push(i + 1);
+    };
+};
+
+PopulateGachaPool();
 
 function App() {
   const [roll, setRoll] = useState(null);
   const [outcome, setOutcome] = useState(null);
 
-  const numberGenerator = function() {
-    let n = Math.ceil(Math.random() * CAP);
+  const numberGenerator = function(poolSize) {
+    let n = Math.ceil(Math.random() * poolSize);
 
     return n;
   };
 
-  const isRollSSR = function() {
-    let ssrRolls = [];
+  const isRollSSR = function(gacha_pool) {
+    const isSSR = [], _gacha_pool = [...gacha_pool];
 
-    while(ssrRolls.length < 4) {
-      for(let i = 0; i < SSR_RATE; i++){
-        ssrRolls.push(numberGenerator(true));
-      };
-
-      ssrRolls = [...new Set(ssrRolls)];
-
-      if(ssrRolls.length !== 4) {
-        ssrRolls = [];
-      };
+    //Randomly pull four numbers out of the array to fill the SSR Pool
+    for(let i = 0; i < SSR_RATE; i++){
+      isSSR.push(parseInt(_gacha_pool.splice(numberGenerator(_gacha_pool.length) - 1, 1)));
     };
-    return ssrRolls;
+
+    return isSSR;
   };
 
 
   const rollGachaHandler = () => {
-    const r = numberGenerator();
-    const isSSR = isRollSSR();
+    const r = numberGenerator(GACHA_POOL_SIZE);
+    const ssrPool = isRollSSR(GACHA_POOL);
 
     setRoll(r);
-    if(isSSR.includes(roll)) {
+    if(ssrPool.includes(r)) {
+      alert("You've rolled an SSR!");
       setOutcome("You've rolled an SSR!");
     } else {
       setOutcome("Better luck next time!");
     };
   };
 
-  const debugGacha = () => {
-    let debugSSR;
+  const debugRolls = () => {
     for(let i = 0; i < 200; i++) {
-      debugSSR = isRollSSR();
-      if(debugSSR.length !== 4) {
+      const debugSSR = isRollSSR(GACHA_POOL);
+      const _debugSSR = [...new Set(debugSSR)];
+      
+      if(_debugSSR.length !== 4) {
         console.log("bug");
         break;
+      };
+    };
+  };
+
+  const debugGacha = function() {
+    for(let i = 0; i < 100; i++) {
+      const r = numberGenerator(GACHA_POOL_SIZE);
+      const ssrPool = isRollSSR(GACHA_POOL);
+  
+      setRoll(r);
+      if(ssrPool.includes(r)) {
+        alert("You've rolled an SSR!");
+        setOutcome("You've rolled an SSR!");
+      } else {
+        setOutcome("Better luck next time!");
       };
     };
   };
@@ -62,6 +83,7 @@ function App() {
         {outcome}
       </div>
       <button onClick={rollGachaHandler}>Click to Roll</button>
+      <button onClick={debugRolls}>Debug Rolls</button>
       <button onClick={debugGacha}>Debug Gacha</button>
     </>
   )
