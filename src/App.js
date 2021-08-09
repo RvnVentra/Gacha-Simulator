@@ -3,6 +3,7 @@ import { useState } from 'react';
 const GACHA_POOL_SIZE = 100;
 const GACHA_POOL = [];
 const SSR_RATE = 4;
+const SR_RATE = 36;
 
 function PopulateGachaPool() {
     //Populate the total size of rolls/pulls
@@ -15,6 +16,7 @@ PopulateGachaPool();
 
 function App() {
   const [roll, setRoll] = useState(null);
+  const [ssrPool, setSSRPool] = useState([]);
   const [outcome, setOutcome] = useState(null);
 
   const numberGenerator = function(poolSize) {
@@ -31,20 +33,40 @@ function App() {
       isSSR.push(parseInt(_gacha_pool.splice(numberGenerator(_gacha_pool.length) - 1, 1)));
     };
 
+    setSSRPool(isSSR);
+
     return isSSR;
+  };
+
+  const isRollSR = function(gacha_pool) {
+    const isSR = [], _gacha_pool = [...gacha_pool];
+
+    //Remove SSR Pool from generatable numbers
+    for(let i = 0; i < SSR_RATE; i++) {
+      _gacha_pool.splice(ssrPool[i] - 1, 1);
+    };
+
+    for(let i = 0; i < SR_RATE; i++) {
+      isSR.push(parseInt(_gacha_pool.splice(numberGenerator(_gacha_pool.length) - 1, 1)));
+    };
+
+    return isSR;
   };
 
 
   const rollGachaHandler = () => {
     const r = numberGenerator(GACHA_POOL_SIZE);
-    const ssrPool = isRollSSR(GACHA_POOL);
+    const _ssrPool = isRollSSR(GACHA_POOL);
+    const _srPool = isRollSR(GACHA_POOL);
 
     setRoll(r);
-    if(ssrPool.includes(r)) {
+    if(_ssrPool.includes(r)) {
       alert("You've rolled an SSR!");
-      setOutcome("You've rolled an SSR!");
+      setOutcome("You've rolled a SSR!");
+    } else if (_srPool.includes(r)) {
+      setOutcome("You've rolled a SR!");
     } else {
-      setOutcome("Better luck next time!");
+      setOutcome("You've rolled a R!");
     };
   };
 
@@ -63,14 +85,17 @@ function App() {
   const debugGacha = function() {
     for(let i = 0; i < 100; i++) {
       const r = numberGenerator(GACHA_POOL_SIZE);
-      const ssrPool = isRollSSR(GACHA_POOL);
+      const _ssrPool = isRollSSR(GACHA_POOL);
+      const _srPool = isRollSR(GACHA_POOL);
   
       setRoll(r);
-      if(ssrPool.includes(r)) {
+      if(_ssrPool.includes(r)) {
         alert("You've rolled an SSR!");
-        setOutcome("You've rolled an SSR!");
+        setOutcome("You've rolled a SSR!");
+      } else if (_srPool.includes(r)) {
+        setOutcome("You've rolled a SR!");
       } else {
-        setOutcome("Better luck next time!");
+        setOutcome("You've rolled a R!");
       };
     };
   };
@@ -86,7 +111,7 @@ function App() {
       <button onClick={debugRolls}>Debug Rolls</button>
       <button onClick={debugGacha}>Debug Gacha</button>
     </>
-  )
-}
+  );
+};
 
 export default App;
