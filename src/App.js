@@ -4,6 +4,7 @@ const GACHA_POOL_SIZE = 100;
 const GACHA_POOL = [];
 const SSR_RATE = 4;
 const SR_RATE = 36;
+const DEBUG_ROLLS = 100;
 
 function PopulateGachaPool() {
     //Populate the total size of rolls/pulls
@@ -16,8 +17,16 @@ PopulateGachaPool();
 
 function App() {
   const [roll, setRoll] = useState(null);
-  const [ssrPool, setSSRPool] = useState([]);
+  const [totalRolls, setTotalRolls] = useState(0);
+  const [totalCategorizedRolls, setTotalCategorizedRolls] = useState({
+    totalSSR: 0,
+    totalSR: 0,
+    totalR: 0,
+  });
   const [outcome, setOutcome] = useState(null);
+
+  //Fill an array with the four numbers representing SSR pulls
+  const [ssrPool, setSSRPool] = useState([]);
 
   const numberGenerator = function(poolSize) {
     let n = Math.ceil(Math.random() * poolSize);
@@ -60,30 +69,50 @@ function App() {
     const _srPool = isRollSR(GACHA_POOL);
 
     setRoll(r);
+    setTotalRolls(totalRolls + 1);
+
     if(_ssrPool.includes(r)) {
       alert("You've rolled an SSR!");
+      setTotalCategorizedRolls({
+        ...totalCategorizedRolls,
+        totalSSR: totalCategorizedRolls.totalSSR + 1,
+      });
       setOutcome("You've rolled a SSR!");
     } else if (_srPool.includes(r)) {
+      setTotalCategorizedRolls({
+        ...totalCategorizedRolls,
+        totalSR: totalCategorizedRolls.totalSR + 1,
+      });
       setOutcome("You've rolled a SR!");
     } else {
+      setTotalCategorizedRolls({
+        ...totalCategorizedRolls,
+        totalR: totalCategorizedRolls.totalR + 1,
+      });
       setOutcome("You've rolled a R!");
     };
   };
 
   const debugRolls = () => {
-    for(let i = 0; i < 200; i++) {
+    for(let i = 0; i < DEBUG_ROLLS; i++) {
       const debugSSR = isRollSSR(GACHA_POOL);
       const _debugSSR = [...new Set(debugSSR)];
+      const debugSR = isRollSR(GACHA_POOL);
+      const _debugSR = [...new Set(debugSR)];
       
-      if(_debugSSR.length !== 4) {
-        console.log("bug");
+      if(_debugSSR.length !== SSR_RATE) {
+        console.log("SSR pool is incorrect");
+        break;
+      };
+      if(_debugSR.length !== SR_RATE) {
+        console.log("SR pool is incorrect");
         break;
       };
     };
   };
 
   const debugGacha = function() {
-    for(let i = 0; i < 100; i++) {
+    for(let i = 0; i < DEBUG_ROLLS; i++) {
       const r = numberGenerator(GACHA_POOL_SIZE);
       const _ssrPool = isRollSSR(GACHA_POOL);
       const _srPool = isRollSR(GACHA_POOL);
@@ -100,12 +129,26 @@ function App() {
     };
   };
 
+  const displayOutcome = outcome && (
+    <p>{outcome}</p>
+  );
+
+  const displayTotalCategorizedRolls = (
+    <div>
+      <p>SSRs Pulled: {totalCategorizedRolls.totalSSR}</p>
+      <p>SRs Pulled: {totalCategorizedRolls.totalSR}</p>
+      <p>Rs Pulled: {totalCategorizedRolls.totalR}</p>
+    </div>
+  );
+
   return (
     <>
       <h1>Gacha simulator</h1>
       <div>
         {roll}
-        {outcome}
+        <p>Total Rolls: {totalRolls}</p>
+        {displayTotalCategorizedRolls}
+        {displayOutcome}
       </div>
       <button onClick={rollGachaHandler}>Click to Roll</button>
       <button onClick={debugRolls}>Debug Rolls</button>
