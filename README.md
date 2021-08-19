@@ -15,4 +15,5 @@ This project is created with the intention of replicating the results of the var
 ### Todos
 - Add CSS
 - Add a history of all SSR and SR pulls
+- Add a premium currency tracker to replicate the potential cost of pulling
 - TBD
