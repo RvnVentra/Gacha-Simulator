@@ -1,10 +1,25 @@
 import { useState } from 'react';
 
-const GACHA_POOL_SIZE = 100;
-const GACHA_POOL = [];
-const SSR_RATE = 4;
-const SR_RATE = 36;
-const DEBUG_ROLLS = 100;
+
+import Header from './components/Header/header';
+import GachaInfo from './components/Content/GachaInfo/gachaInfo';
+import GachaInteraction from './components/Content/GachaInteraction/gachaInteraction';
+
+const GACHA_INFO = {
+  GACHA_POOL_SIZE: 100,
+  GACHA_POOL: [],
+  SSR_RATE: 4,
+  SR_RATE: 36,
+  DEBUG_ROLLS_COUNT: 100
+};
+
+const {
+  GACHA_POOL_SIZE,
+  GACHA_POOL,
+  SSR_RATE,
+  SR_RATE,
+  DEBUG_ROLLS_COUNT
+} = GACHA_INFO;
 
 function PopulateGachaPool() {
     //Populate the total size of rolls/pulls
@@ -63,7 +78,7 @@ function App() {
   };
 
 
-  const rollGachaHandler = () => {
+  const rollSingleGachaHandler = () => {
     const r = numberGenerator(GACHA_POOL_SIZE);
     const _ssrPool = isRollSSR(GACHA_POOL);
     const _srPool = isRollSR(GACHA_POOL);
@@ -94,7 +109,7 @@ function App() {
   };
 
   const debugRolls = () => {
-    for(let i = 0; i < DEBUG_ROLLS; i++) {
+    for(let i = 0; i < DEBUG_ROLLS_COUNT; i++) {
       const debugSSR = isRollSSR(GACHA_POOL);
       const _debugSSR = [...new Set(debugSSR)];
       const debugSR = isRollSR(GACHA_POOL);
@@ -112,7 +127,7 @@ function App() {
   };
 
   const debugGacha = function() {
-    for(let i = 0; i < DEBUG_ROLLS; i++) {
+    for(let i = 0; i < DEBUG_ROLLS_COUNT; i++) {
       const r = numberGenerator(GACHA_POOL_SIZE);
       const _ssrPool = isRollSSR(GACHA_POOL);
       const _srPool = isRollSR(GACHA_POOL);
@@ -129,30 +144,22 @@ function App() {
     };
   };
 
-  const displayOutcome = outcome && (
-    <p>{outcome}</p>
-  );
-
-  const displayTotalCategorizedRolls = (
-    <div>
-      <p>SSRs Pulled: {totalCategorizedRolls.totalSSR}</p>
-      <p>SRs Pulled: {totalCategorizedRolls.totalSR}</p>
-      <p>Rs Pulled: {totalCategorizedRolls.totalR}</p>
-    </div>
-  );
-
   return (
     <>
-      <h1>Gacha simulator</h1>
-      <div>
-        {roll}
-        <p>Total Rolls: {totalRolls}</p>
-        {displayTotalCategorizedRolls}
-        {displayOutcome}
-      </div>
-      <button onClick={rollGachaHandler}>Click to Roll</button>
-      <button onClick={debugRolls}>Debug Rolls</button>
-      <button onClick={debugGacha}>Debug Gacha</button>
+      <Header />
+
+      <GachaInfo
+        roll={roll}
+        totalRolls={totalRolls}
+        totalCategorizedRolls={totalCategorizedRolls}
+        outcome={outcome}
+      />
+
+      <GachaInteraction
+        rollSingleGacha={rollSingleGachaHandler}
+        debugRolls={debugRolls}
+        debugGacha={debugGacha}
+      />
     </>
   );
 };
