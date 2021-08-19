@@ -110,33 +110,26 @@ export default function Gacha() {
         const r = [];
         const _ssrPool = isRollSSR(GACHA_POOL);
         const _srPool = isRollSR(GACHA_POOL);
+        const _totalCategorizedRolls = { ...totalCategorizedRolls };
 
         setRoll(r);
         setTotalRolls(totalRolls + 10);
 
         for(let i = 0; i < 10; i++) {
             r.push(numberGenerator(GACHA_POOL_SIZE));
-            console.log(r[i]);
 
             if(_ssrPool.includes(r[i])) {
                 alert("You've rolled an SSR!");
-                setTotalCategorizedRolls({
-                    ...totalCategorizedRolls,
-                    totalSSR: totalCategorizedRolls.totalSSR + 1,
-                });
+                _totalCategorizedRolls.totalSSR = _totalCategorizedRolls.totalSSR + 1;
             } else if (_srPool.includes(r[i])) {
-                setTotalCategorizedRolls({
-                    ...totalCategorizedRolls,
-                    totalSR: totalCategorizedRolls.totalSR + 1,
-                });
+                _totalCategorizedRolls.totalSR = _totalCategorizedRolls.totalSR + 1;
             } else {
-                setTotalCategorizedRolls({
-                    ...totalCategorizedRolls,
-                    totalR: totalCategorizedRolls.totalR + 1,
-                });
+                _totalCategorizedRolls.totalR = _totalCategorizedRolls.totalR + 1;
             };
         };
-    }
+
+        setTotalCategorizedRolls(_totalCategorizedRolls);
+    };
 
     const debugRolls = () => {
         for(let i = 0; i < DEBUG_ROLLS_COUNT; i++) {
