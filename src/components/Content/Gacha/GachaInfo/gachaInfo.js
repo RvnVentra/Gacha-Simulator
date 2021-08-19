@@ -13,9 +13,15 @@ export default function Gacha_info(props) {
         <p>{outcome}</p>
     );
 
+    const isTenfoldRoll = roll?.length === 10 ? (
+        roll.map((r, index) => {
+            return ( <li key={index}>{r}</li> );
+        })
+    ) : <p>{roll}</p>
+
     return (
         <div>
-            {roll}
+            {isTenfoldRoll}
             <p>Total Rolls: {totalRolls}</p>
             {displayTotalCategorizedRolls}
             {displayOutcome}
