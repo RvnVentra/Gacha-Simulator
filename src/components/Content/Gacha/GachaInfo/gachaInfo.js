@@ -1,12 +1,14 @@
+import styled from 'styled-components';
+
 export default function Gacha_info(props) {
     const {roll, totalRolls, totalCategorizedRolls, outcome} = props;
     
     const displayTotalCategorizedRolls = (
-        <div>
-          <p>SSRs Pulled: {totalCategorizedRolls.totalSSR}</p>
-          <p>SRs Pulled: {totalCategorizedRolls.totalSR}</p>
-          <p>Rs Pulled: {totalCategorizedRolls.totalR}</p>
-        </div>
+        <RollsContainer>
+          <RollsDisplay>SSRs Pulled: {totalCategorizedRolls.totalSSR}</RollsDisplay>
+          <RollsDisplay>SRs Pulled: {totalCategorizedRolls.totalSR}</RollsDisplay>
+          <RollsDisplay>Rs Pulled: {totalCategorizedRolls.totalR}</RollsDisplay>
+        </RollsContainer>
       );
 
     const displayOutcome = outcome && (
@@ -20,11 +22,35 @@ export default function Gacha_info(props) {
     ) : <p>{roll}</p>
 
     return (
-        <div>
-            {isTenfoldRoll}
+        <InfoContainer>
+            {/* {isTenfoldRoll} */}
             <p>Total Rolls: {totalRolls}</p>
+            <SeparationLine>|</SeparationLine>
             {displayTotalCategorizedRolls}
             {displayOutcome}
-        </div>
+        </InfoContainer>
     );
 };
+
+const InfoContainer = styled.div`
+    border: 1px solid black;
+    margin: 0px auto;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+`;
+
+const RollsContainer = styled.div`
+    display: flex;
+    flex-direction: horizontal;
+`;
+
+const SeparationLine = styled.p`
+    font-size: 35px;
+    margin: 0 20px 2px 20px;
+`;
+
+const RollsDisplay = styled.p`
+    width: 125px;
+`;
