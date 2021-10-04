@@ -111,6 +111,7 @@ export default function Gacha() {
         const _ssrPool = isRollSSR(GACHA_POOL);
         const _srPool = isRollSR(GACHA_POOL);
         const _totalCategorizedRolls = { ...totalCategorizedRolls };
+        const rollResults = []; //Used to record the highest tier roll the user has rolled
 
         setRoll(r);
         setTotalRolls(totalRolls + 10);
@@ -121,11 +122,24 @@ export default function Gacha() {
             if(_ssrPool.includes(r[i])) {
                 alert("You've rolled an SSR!");
                 _totalCategorizedRolls.totalSSR = _totalCategorizedRolls.totalSSR + 1;
+                rollResults.push("SSR");
             } else if (_srPool.includes(r[i])) {
                 _totalCategorizedRolls.totalSR = _totalCategorizedRolls.totalSR + 1;
+                rollResults.push("SR");
             } else {
                 _totalCategorizedRolls.totalR = _totalCategorizedRolls.totalR + 1;
             };
+        };
+
+        if(rollResults.includes("SSR")) {
+            _totalCategorizedRolls.totalSSR = _totalCategorizedRolls.totalSSR + 1;
+            setOutcome("You've rolled a SSR!");
+        } else if (rollResults.length > 0) {
+            _totalCategorizedRolls.totalSR = _totalCategorizedRolls.totalSR + 1;
+            setOutcome("You've rolled a SR!");
+        } else {
+            _totalCategorizedRolls.totalR = _totalCategorizedRolls.totalR + 1;
+            setOutcome("You've rolled a R!");
         };
 
         setTotalCategorizedRolls(_totalCategorizedRolls);
