@@ -2,13 +2,15 @@ import { useState } from 'react';
 
 import GachaInfo from './GachaInfo/gachaInfo';
 import GachaInteraction from './GachaInteraction/gachaInteraction';
+import GachaResults from './GachaResults/gachaResults';
 
 const GACHA_INFO = {
   GACHA_POOL_SIZE: 100,
   GACHA_POOL: [],
   SSR_RATE: 4,
   SR_RATE: 36,
-  DEBUG_ROLLS_COUNT: 100
+  DEBUG_ROLLS_COUNT: 100,
+  GACHA_RESULTS: [],
 };
 
 const {
@@ -16,7 +18,8 @@ const {
   GACHA_POOL,
   SSR_RATE,
   SR_RATE,
-  DEBUG_ROLLS_COUNT
+  DEBUG_ROLLS_COUNT,
+  GACHA_RESULTS
 } = GACHA_INFO;
 
 function PopulateGachaPool() {
@@ -104,6 +107,8 @@ export default function Gacha() {
             });
             setOutcome("You've rolled a R!");
         };
+
+        GACHA_RESULTS.push(r);
     };
 
     const rollTenfoldGachaHandler = () => {
@@ -129,6 +134,8 @@ export default function Gacha() {
             } else {
                 _totalCategorizedRolls.totalR = _totalCategorizedRolls.totalR + 1;
             };
+
+            GACHA_RESULTS.push(r[i]);
         };
 
         if(rollResults.includes("SSR")) {
@@ -195,6 +202,10 @@ export default function Gacha() {
                 rollTenfoldGacha={rollTenfoldGachaHandler}
                 debugRolls={debugRolls}
                 debugGacha={debugGacha}
+            />
+
+            <GachaResults 
+                gachaResults={GACHA_RESULTS}
             />
         </div>
     );

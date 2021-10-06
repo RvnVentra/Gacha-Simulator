@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function Gacha_info(props) {
+export default function Gacha_Info(props) {
     const {roll, totalRolls, totalCategorizedRolls, outcome} = props;
     
     const displayTotalCategorizedRolls = (

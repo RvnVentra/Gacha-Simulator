@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Gacha_interaction(props) {
+export default function Gacha_Interaction(props) {
     const {rollSingleGacha, rollTenfoldGacha} = props;
     // const {rollSingleGacha, rollTenfoldGacha, debugRolls, debugGacha} = props; //Enable for debugging
 
