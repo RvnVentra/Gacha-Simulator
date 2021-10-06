@@ -30,7 +30,6 @@ const ResultsContainer = styled.div`
 
 const Results = styled.li`
     list-style: none;
-    width: 50px;
-    padding: 0.3px 0px;
-    text-align: center;
+    width: 75px;
+    padding: 0.3px 10px;
 `;

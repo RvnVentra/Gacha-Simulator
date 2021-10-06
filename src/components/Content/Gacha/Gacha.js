@@ -93,21 +93,22 @@ export default function Gacha() {
                 totalSSR: totalCategorizedRolls.totalSSR + 1,
             });
             setOutcome("You've rolled a SSR!");
+            GACHA_RESULTS.push(`${r} - SSR`);
         } else if (_srPool.includes(r)) {
             setTotalCategorizedRolls({
                 ...totalCategorizedRolls,
                 totalSR: totalCategorizedRolls.totalSR + 1,
             });
             setOutcome("You've rolled a SR!");
+            GACHA_RESULTS.push(`${r} - SR`);
         } else {
             setTotalCategorizedRolls({
                 ...totalCategorizedRolls,
                 totalR: totalCategorizedRolls.totalR + 1,
             });
             setOutcome("You've rolled a R!");
+            GACHA_RESULTS.push(`${r} - R`);
         };
-
-        GACHA_RESULTS.push(r);
     };
 
     const rollTenfoldGachaHandler = () => {
@@ -126,14 +127,15 @@ export default function Gacha() {
             if(_ssrPool.includes(r[i])) {
                 _totalCategorizedRolls.totalSSR = _totalCategorizedRolls.totalSSR + 1;
                 rollResults.push("SSR");
+                GACHA_RESULTS.push(`${r[i]} - SSR`);
             } else if (_srPool.includes(r[i])) {
                 _totalCategorizedRolls.totalSR = _totalCategorizedRolls.totalSR + 1;
                 rollResults.push("SR");
+                GACHA_RESULTS.push(`${r[i]} - SR`);
             } else {
                 _totalCategorizedRolls.totalR = _totalCategorizedRolls.totalR + 1;
+                GACHA_RESULTS.push(`${r[i]} - R`);
             };
-
-            GACHA_RESULTS.push(r[i]);
         };
 
         if(rollResults.includes("SSR")) {
