@@ -88,7 +88,6 @@ export default function Gacha() {
         setTotalRolls(totalRolls + 1);
 
         if(_ssrPool.includes(r)) {
-            alert("You've rolled an SSR!");
             setTotalCategorizedRolls({
                 ...totalCategorizedRolls,
                 totalSSR: totalCategorizedRolls.totalSSR + 1,
@@ -125,7 +124,6 @@ export default function Gacha() {
             r.push(numberGenerator(GACHA_POOL_SIZE));
 
             if(_ssrPool.includes(r[i])) {
-                alert("You've rolled an SSR!");
                 _totalCategorizedRolls.totalSSR = _totalCategorizedRolls.totalSSR + 1;
                 rollResults.push("SSR");
             } else if (_srPool.includes(r[i])) {
@@ -178,7 +176,6 @@ export default function Gacha() {
         
             setRoll(r);
             if(_ssrPool.includes(r)) {
-                alert("You've rolled an SSR!");
                 setOutcome("You've rolled a SSR!");
             } else if (_srPool.includes(r)) {
                 setOutcome("You've rolled a SR!");
