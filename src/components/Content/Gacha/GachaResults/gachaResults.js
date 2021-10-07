@@ -11,30 +11,36 @@ export default function Gacha_Results(props) {
 
     return (
         <ResultsContainer>
-            {displayResults}
+            <Test>
+                {displayResults}
+            </Test>
         </ResultsContainer>
     );
 };
 
 const ResultsContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     justify-content: center;
     border: 1px solid black;
     margin: 0 auto;
     width: 90vw;
-    height: 60vh;
-    padding: 5px;
-    font-size: 15px;
+`;
+
+const Test = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: inherit;
+    margin: 15px;
 `;
 
 const Results = styled.li`
-    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     list-style: none;
+    margin: 5px;
     width: 50px;
-    padding: 1px 0px;
-    text-align: center;
+    height: 50px;
 
     ${props => props.rarity === "SSR" && "background-color: gold"}
     ${props => props.rarity === "SR" && "background-color: silver"}
