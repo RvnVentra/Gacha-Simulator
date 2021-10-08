@@ -19,7 +19,7 @@ const InteractionContainer = styled.div`
     align-items: center;
     justify-content: space-evenly;
     width: 20vw;
-    margin: 5px auto;
+    margin: 35px auto;
 `;
 
 const InteractionButton = styled.button`

@@ -184,6 +184,8 @@ export default function Gacha() {
         };
     };
 
+    const displayGachaResults = GACHA_RESULTS.length > 0 && <GachaResults gachaResults={GACHA_RESULTS} />;
+
     return (
         <div>
             <GachaInfo
@@ -199,9 +201,7 @@ export default function Gacha() {
                 debugGacha={debugGacha}
             />
 
-            <GachaResults 
-                gachaResults={GACHA_RESULTS}
-            />
+            {displayGachaResults}
         </div>
     );
 };
