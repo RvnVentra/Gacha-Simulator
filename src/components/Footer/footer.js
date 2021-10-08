@@ -4,7 +4,7 @@ export default function Footer() {
     return (
         <FooterContainer>
             <Author>Made by: Ryan Feng</Author>
-            <Github>See other projects at: Github</Github>
+            <Github>See other projects at: <Link href="https://github.com/RvnVentra" target="_blank">Github</Link></Github>
         </FooterContainer>
     );
 };
@@ -25,4 +25,17 @@ const Author = styled.p`
 
 const Github = styled.p`
 
+`;
+
+const Link = styled.a`
+    text-decoration: none;
+    transition: color 100ms linear;
+
+    &:visited {
+        color: black;
+    };
+
+    &:hover {
+        color: lightblue;
+    };
 `;

@@ -24,13 +24,13 @@ export default function Gacha_Results(props) {
 const ResultsContainer = styled.div`
     justify-content: center;
     border: 1px solid black;
-    margin: 0 auto 65px auto;
+    margin: 0 auto 35px auto;
     width: 90vw;
     visibility: ${ props => props.toggleDisplay ? "hidden" : "visible" };
 `;
 
 const Test = styled.div`
-    height: 44vh;
+    height: 47vh;
     overflow-y: scroll;
     overflow-x: hidden;
 `;
@@ -46,7 +46,7 @@ const Results = styled.p`
     align-items: center;
     justify-content: center;
     list-style: none;
-    margin: 5.5px 5px;
+    margin: 7.5px 5px;
     width: 50px;
     height: 50px;
 
