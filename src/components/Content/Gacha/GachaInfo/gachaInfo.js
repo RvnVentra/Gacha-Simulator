@@ -1,17 +1,31 @@
 import styled from 'styled-components';
 
+const DecimalToPercent = function(value) {
+    return value ? (value * 100).toFixed(2) + '%' : '0%';
+};
+
 export default function Gacha_Info(props) {
-    const {roll, totalRolls, totalCategorizedRolls, outcome} = props;
+    const {totalRolls, totalCategorizedRolls, outcome} = props;
+
+    const { totalSSR, totalSR, totalR } = totalCategorizedRolls;
     
     const displayTotalCategorizedRolls = (
         <RollsContainer>
             <RollsDisplay>Total Rolls: {totalRolls}</RollsDisplay>
             <SeparationLine>|</SeparationLine>
-            <RollsDisplay>SSRs Pulled: {totalCategorizedRolls.totalSSR}</RollsDisplay>
-            <RollsDisplay>SRs Pulled: {totalCategorizedRolls.totalSR}</RollsDisplay>
-            <RollsDisplay>Rs Pulled: {totalCategorizedRolls.totalR}</RollsDisplay>
+            <RollsDisplay>SSRs Pulled: {totalSSR}</RollsDisplay>
+            <RollsDisplay>SRs Pulled: {totalSR}</RollsDisplay>
+            <RollsDisplay>Rs Pulled: {totalR}</RollsDisplay>
         </RollsContainer>
-      );
+    );
+
+    const displayPercentile = (
+        <PercentileContainer>
+            <PercentileDisplay>SSR Rate: {DecimalToPercent(totalSSR / totalRolls)}</PercentileDisplay>
+            <PercentileDisplay>SR Rate: {DecimalToPercent(totalSR / totalRolls)}</PercentileDisplay>
+            <PercentileDisplay>R Rate: {DecimalToPercent(totalR / totalRolls)}</PercentileDisplay>
+        </PercentileContainer>
+    );
 
     const displayOutcome = outcome ? <p>{outcome}</p> : <p>Press "Roll" to roll</p>;
 
@@ -25,6 +39,7 @@ export default function Gacha_Info(props) {
         <InfoContainer>
             <OutcomeContainer>{displayOutcome}</OutcomeContainer>
             {displayTotalCategorizedRolls}
+            {displayPercentile}
         </InfoContainer>
     );
 };
@@ -57,6 +72,20 @@ const SeparationLine = styled.p`
 `;
 
 const RollsDisplay = styled.p`
+    width: 125px;
+    text-align: center;
+`;
+
+const PercentileContainer = styled.div`
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    text-align: center;
+`;
+
+const PercentileDisplay = styled.p`
     width: 125px;
     text-align: center;
 `;

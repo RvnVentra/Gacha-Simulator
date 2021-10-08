@@ -187,7 +187,6 @@ export default function Gacha() {
     return (
         <div>
             <GachaInfo
-                roll={roll}
                 totalRolls={totalRolls}
                 totalCategorizedRolls={totalCategorizedRolls}
                 outcome={outcome}
