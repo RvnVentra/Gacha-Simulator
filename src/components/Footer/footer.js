@@ -1,0 +1,28 @@
+import styled from "styled-components";
+
+export default function Footer() {
+    return (
+        <FooterContainer>
+            <Author>Made by: Ryan Feng</Author>
+            <Github>See other projects at: Github</Github>
+        </FooterContainer>
+    );
+};
+
+const FooterContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    height: 40px;
+    width: 98vw;
+    margin: 0 auto;
+`;
+
+const Author = styled.p`
+
+`;
+
+const Github = styled.p`
+
+`;

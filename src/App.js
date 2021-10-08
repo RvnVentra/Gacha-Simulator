@@ -1,7 +1,6 @@
-import Gacha from './components/Content/Gacha/Gacha';
-
-
 import Header from './components/Header/header';
+import Gacha from './components/Content/Gacha/Gacha';
+import Footer from './components/Footer/footer';
 
 function App() {
   return (
@@ -9,6 +8,8 @@ function App() {
       <Header />
 
       <Gacha />
+
+      <Footer />
     </>
   );
 };

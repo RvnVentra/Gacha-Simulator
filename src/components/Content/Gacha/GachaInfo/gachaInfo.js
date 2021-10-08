@@ -50,6 +50,7 @@ const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 98vw;
 `;
 
 const OutcomeContainer = styled.div`

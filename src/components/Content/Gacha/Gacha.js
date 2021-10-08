@@ -184,10 +184,8 @@ export default function Gacha() {
         };
     };
 
-    const displayGachaResults = GACHA_RESULTS.length > 0 && <GachaResults gachaResults={GACHA_RESULTS} />;
-
     return (
-        <div>
+        <>
             <GachaInfo
                 totalRolls={totalRolls}
                 totalCategorizedRolls={totalCategorizedRolls}
@@ -201,7 +199,7 @@ export default function Gacha() {
                 debugGacha={debugGacha}
             />
 
-            {displayGachaResults}
-        </div>
+            <GachaResults gachaResults={GACHA_RESULTS} />
+        </>
     );
 };
