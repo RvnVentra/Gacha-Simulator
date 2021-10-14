@@ -28,7 +28,6 @@ export default function GachaInput() {
         <>
             <input type="file" onChange={fileUploadHandler}></input>
             <textarea value={input} onChange={textOnChangeHandler}></textarea>
-            <p>{input}</p>
         </>
     );
 };

@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import AddGachaInfo from './AddGachaInfo/addGachaInfo';
 
 import GachaInfo from './GachaInfo/gachaInfo';
-import GachaInput from './GachaInput/gachaInput';
 import GachaInteraction from './GachaInteraction/gachaInteraction';
 import GachaResults from './GachaResults/gachaResults';
 
@@ -200,9 +200,10 @@ export default function Gacha() {
                 debugGacha={debugGacha}
             />
 
-            <GachaInput />
+            <AddGachaInfo />
 
             <GachaResults gachaResults={GACHA_RESULTS} />
         </>
     );
 };
+
