@@ -1,7 +1,6 @@
-import { useState } from "react";
-
-export default function GachaInput() {
-    const [input, setInput] = useState("");
+export default function GachaInput(props) {
+    // const [input, setInput] = useState("");
+    const { input, setInput } = props;
 
     const fileUploadHandler = (e) => {
         const file = e.target.files[0];
