@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import AddGachaInfo from './AddGachaInfo/addGachaInfo';
 
 import GachaInfo from './GachaInfo/gachaInfo';
 import GachaInteraction from './GachaInteraction/gachaInteraction';
 import GachaResults from './GachaResults/gachaResults';
+import RollInfo from './RollInfo/RollInfo';
 
 const GACHA_INFO = {
   GACHA_POOL_SIZE: 100,
@@ -200,7 +200,7 @@ export default function Gacha() {
                 debugGacha={debugGacha}
             />
 
-            <AddGachaInfo />
+            <RollInfo />
 
             <GachaResults gachaResults={GACHA_RESULTS} />
         </>

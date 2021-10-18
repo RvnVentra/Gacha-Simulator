@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import GachaInput from './GachaInput/gachaInput';
+import GachaInput from './RollInput/rollInput';
 
 export default function AddGachaInfo() {
     const [toggleInputDisplay, setToggleInputDisplay] = useState(false);
