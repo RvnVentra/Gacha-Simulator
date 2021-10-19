@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import GachaInteraction from '../GachaInteraction/gachaInteraction';
+
 const DecimalToPercent = function(value) {
     return value ? (value * 100).toFixed(2) + '%' : '0%';
 };
@@ -38,8 +40,16 @@ export default function Gacha_Info(props) {
     return (
         <InfoContainer>
             <OutcomeContainer>{displayOutcome}</OutcomeContainer>
+
             {displayTotalCategorizedRolls}
             {displayPercentile}
+
+            <GachaInteraction
+                rollSingleGacha={props.rollSingleGacha}
+                rollTenfoldGacha={props.rollTenfoldGacha}
+                debugRolls={props.debugRolls}
+                debugGacha={props.debugGacha}
+            />
         </InfoContainer>
     );
 };
@@ -50,21 +60,22 @@ const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 98vw;
+    width: 40vw;
 `;
 
 const OutcomeContainer = styled.div`
     border: 1px solid black;
-    padding: 15px;
-    margin: 15px 0px;
-    width: 200px;
+    margin: 5px 0px;
+    width: 35%;
     text-align: center;
 `;
 
 const RollsContainer = styled.div`
     display: flex;
+    justify-content: space-evenly;
     border: 1px solid black;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    width: 70%;
 `;
 
 const SeparationLine = styled.p`
@@ -73,20 +84,17 @@ const SeparationLine = styled.p`
 `;
 
 const RollsDisplay = styled.p`
-    width: 125px;
-    text-align: center;
+
 `;
 
 const PercentileContainer = styled.div`
     display: flex;
-    align-items: center;
+    justify-content: space-evenly;
     border: 1px solid black;
-    padding: 0 15px;
-    margin-bottom: 15px;
-    text-align: center;
+    margin-bottom: 5px;
+    width: 60%;
 `;
 
 const PercentileDisplay = styled.p`
-    width: 125px;
-    text-align: center;
+
 `;

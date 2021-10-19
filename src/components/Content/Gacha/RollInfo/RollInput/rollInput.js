@@ -1,5 +1,4 @@
 export default function GachaInput(props) {
-    // const [input, setInput] = useState("");
     const { input, setInput } = props;
 
     const fileUploadHandler = (e) => {

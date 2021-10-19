@@ -14,11 +14,11 @@ export default function AddGachaInfo() {
 
     return (
         <RollInfoDisplay>
-            <button onClick={toggleHandler}>Add Roll Information</button>
-            <ToggleRollDisplay toggleDisplay={toggleInputDisplay}>
+            <ToggleDisplay onClick={toggleHandler}>Add Roll Information</ToggleDisplay>
+            <RollDisplay toggleDisplay={toggleInputDisplay}>
                 <GachaInput input={input} setInput={setInput}/>
                 <GachaOutput input={input} />
-            </ToggleRollDisplay>
+            </RollDisplay>
         </RollInfoDisplay>
     );
 };
@@ -27,9 +27,25 @@ const RollInfoDisplay = styled.div`
     border: 1px solid black;
 `;
 
-const ToggleRollDisplay = styled.div`
+const ToggleDisplay = styled.button`
+    background-color: inherit;
+    border: 1px solid black;
+    border-radius: 7px;
+    text-align: center;
+    width: 150px;
+    padding: 3.5px 7px;
+    transition: 100ms linear;
+
+    &:hover {
+        cursor: pointer;
+        background-color: lightgrey;
+        color: white;
+    };
+`;
+
+const RollDisplay = styled.div`
     display: ${props => !props.toggleDisplay ? "none" : "flex"};
-    flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 5px;
 `;

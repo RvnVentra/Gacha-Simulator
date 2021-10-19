@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 
 import GachaInfo from './GachaInfo/gachaInfo';
-import GachaInteraction from './GachaInteraction/gachaInteraction';
 import GachaResults from './GachaResults/gachaResults';
 import RollInfo from './RollInfo/rollInfo';
 
@@ -187,23 +187,26 @@ export default function Gacha() {
 
     return (
         <>
-            <GachaInfo
-                totalRolls={totalRolls}
-                totalCategorizedRolls={totalCategorizedRolls}
-                outcome={outcome}
-            />
+            <GachaDisplayContainer>
+                <GachaInfo
+                    totalRolls={totalRolls}
+                    totalCategorizedRolls={totalCategorizedRolls}
+                    outcome={outcome}
+                    rollSingleGacha={rollSingleGachaHandler}
+                    rollTenfoldGacha={rollTenfoldGachaHandler}
+                    debugRolls={debugRolls}
+                    debugGacha={debugGacha}
+                />
+            </GachaDisplayContainer>
 
-            <GachaInteraction
-                rollSingleGacha={rollSingleGachaHandler}
-                rollTenfoldGacha={rollTenfoldGachaHandler}
-                debugRolls={debugRolls}
-                debugGacha={debugGacha}
-            />
-
-            <RollInfo />
+            {/* <RollInfo /> */}
 
             <GachaResults gachaResults={GACHA_RESULTS} />
         </>
     );
 };
 
+const GachaDisplayContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+`;

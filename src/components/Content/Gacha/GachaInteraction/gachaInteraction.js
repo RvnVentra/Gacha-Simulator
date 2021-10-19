@@ -6,8 +6,8 @@ export default function Gacha_Interaction(props) {
 
     return (
         <InteractionContainer>
-            {rollSingleGacha && <InteractionButton onClick={rollSingleGacha}>1x Pull</InteractionButton>}
-            {rollTenfoldGacha && <InteractionButton onClick={rollTenfoldGacha}>10x Pull</InteractionButton>}
+            {rollSingleGacha && <InteractionButton onClick={rollSingleGacha}>1x Roll</InteractionButton>}
+            {rollTenfoldGacha && <InteractionButton onClick={rollTenfoldGacha}>10x Roll</InteractionButton>}
             {/* {debugRolls && <button onClick={debugRolls}>Debug Rolls</button>}
             {debugGacha && <button onClick={debugGacha}>Debug Gacha</button>} */}
         </InteractionContainer>
@@ -18,8 +18,8 @@ const InteractionContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 20vw;
-    margin: 30px auto;
+    width: 75%;
+    margin-bottom: 5px;
 `;
 
 const InteractionButton = styled.button`
