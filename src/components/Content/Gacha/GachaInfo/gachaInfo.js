@@ -56,10 +56,10 @@ export default function Gacha_Info(props) {
 
 const InfoContainer = styled.div`
     border: 1px solid black;
-    margin: 0px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 25vh;
     width: 40vw;
 `;
 

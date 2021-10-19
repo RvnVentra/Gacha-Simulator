@@ -25,8 +25,8 @@ const ResultsContainer = styled.div`
     justify-content: center;
     border: 1px solid black;
     margin: 0 auto 35px auto;
-    width: 90vw;
-    visibility: ${ props => props.toggleDisplay ? "hidden" : "visible" };
+    width: 45vw;
+    // visibility: ${ props => props.toggleDisplay ? "hidden" : "visible" };
 `;
 
 const Test = styled.div`

@@ -186,27 +186,32 @@ export default function Gacha() {
     };
 
     return (
-        <>
-            <GachaDisplayContainer>
-                <GachaInfo
-                    totalRolls={totalRolls}
-                    totalCategorizedRolls={totalCategorizedRolls}
-                    outcome={outcome}
-                    rollSingleGacha={rollSingleGachaHandler}
-                    rollTenfoldGacha={rollTenfoldGachaHandler}
-                    debugRolls={debugRolls}
-                    debugGacha={debugGacha}
-                />
-            </GachaDisplayContainer>
-
-            {/* <RollInfo /> */}
+        <GachaDisplayContainer>
+            <GachaInfo
+                totalRolls={totalRolls}
+                totalCategorizedRolls={totalCategorizedRolls}
+                outcome={outcome}
+                rollSingleGacha={rollSingleGachaHandler}
+                rollTenfoldGacha={rollTenfoldGachaHandler}
+                debugRolls={debugRolls}
+                debugGacha={debugGacha}
+            />
+        
+            <RollInfo />
 
             <GachaResults gachaResults={GACHA_RESULTS} />
-        </>
+        </GachaDisplayContainer>
     );
 };
 
 const GachaDisplayContainer = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    margin-bottom: 25px;
+    height: 82.5vh;
+    width: 99vw;
 `;
