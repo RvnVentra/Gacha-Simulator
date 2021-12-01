@@ -30,23 +30,83 @@ export default function RollOutput(props) {
         setOutput(_output);
     }, [props.input]);
 
-    const displayOutput = output.length > 0 ? output.map((out, index) => {
+    // const displayOutput = output.length > 0 ? output.map((out, index) => {
+    //     return (
+    //         <div key={index}>
+    //             {
+    //                 out.map((o, index) => {
+    //                     return (
+    //                         <ul key={index}>
+    //                             <li>{o}</li>
+    //                         </ul>
+    //                     );
+    //                 })
+    //             }
+    //         </div>
+    //     );
+    // }) : <p>Hi</p>;
+
+    const displaySSROutput = output[0]?.map((out, index) => {
         return (
-            <div key={index}>{out}</div>
+            <DisplayRollOutput key={index}>{out}</DisplayRollOutput>
         );
-    }) : <p>Add info to display</p>;
+    });
+
+    const displaySROutput = output[1]?.map((out, index) => {
+        return (
+            <DisplayRollOutput key={index}>{out}</DisplayRollOutput>
+        );
+    });
+
+    const displayROutput = output[2]?.map((out, index) => {
+        return (
+            <DisplayRollOutput key={index}>{out}</DisplayRollOutput>
+        );
+    });
 
     return (
         <OutputContainer>
-            {displayOutput}
+            <DisplayContainer>
+                <RarityHeader>SSR</RarityHeader>
+                {displaySSROutput}
+            </DisplayContainer>
+            <DisplayContainer>
+                <RarityHeader>SR</RarityHeader>
+                {displaySROutput}
+            </DisplayContainer>
+            <DisplayContainer>
+                <RarityHeader>R</RarityHeader>
+                {displayROutput}
+            </DisplayContainer>
         </OutputContainer>
     );
 };
 
 const OutputContainer = styled.div`
     border: 1px solid black;
-    width: 300px;
+    width: 100%;
     height: 100px;
     margin: 10px 0;
-    overflow-x: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+`;
+
+const DisplayContainer = styled.div`
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    overflow: auto;
+`;
+
+const RarityHeader = styled.p`
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 5px;
+`;
+
+const DisplayRollOutput = styled.li`
+    padding: 5px;
+    list-style: none;
 `;

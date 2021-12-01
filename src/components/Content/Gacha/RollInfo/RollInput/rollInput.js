@@ -25,7 +25,7 @@ export default function GachaInput(props) {
     return (
         <div>
             <input type="file" onChange={fileUploadHandler}></input>
-            <textarea value={input} onChange={textOnChangeHandler}></textarea>
+            {/* <textarea value={input} onChange={textOnChangeHandler}></textarea> */}
         </div>
     );
 };
