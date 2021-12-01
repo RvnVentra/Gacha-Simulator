@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import GachaInput from './RollInput/rollInput';
-import GachaOutput from './RollOutput/rollOutput';
+import RollInput from './RollInput/rollInput';
+import RollOutput from './RollOutput/rollOutput';
 
 export default function AddGachaInfo() {
     const [toggleInputDisplay, setToggleInputDisplay] = useState(false);
@@ -17,8 +17,8 @@ export default function AddGachaInfo() {
             <ToggleDisplay onClick={toggleHandler}>Add Roll Information</ToggleDisplay>
 
             <RollDisplay toggleDisplay={toggleInputDisplay}>
-                <GachaInput input={input} setInput={setInput}/>
-                <GachaOutput input={input} />
+                <RollInput input={input} setInput={setInput}/>
+                <RollOutput input={input} />
             </RollDisplay>
         </RollInfoDisplay>
     );
@@ -29,8 +29,8 @@ const RollInfoDisplay = styled.div`
     flex-direction: column;
     align-items: center;
     border: 1px solid black;
-    height: 25vh;
-    width: 40vw;
+    height: 40%;
+    width: 40%;
 `;
 
 const ToggleDisplay = styled.button`

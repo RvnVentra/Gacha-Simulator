@@ -25,7 +25,7 @@ const ResultsContainer = styled.div`
     justify-content: center;
     border: 1px solid black;
     margin: 0 auto 35px auto;
-    width: 45vw;
+    width: 45.1%;
     // visibility: ${ props => props.toggleDisplay ? "hidden" : "visible" };
 `;
 

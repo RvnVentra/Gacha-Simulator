@@ -59,8 +59,8 @@ const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 25vh;
-    width: 40vw;
+    height: 26%;
+    width: 40%;
 `;
 
 const OutcomeContainer = styled.div`
