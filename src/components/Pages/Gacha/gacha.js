@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import GachaInfo from './GachaInfo/gachaInfo';
 import GachaResults from './GachaResults/gachaResults';
-import RollInfo from './RollInfo/rollInfo';
 
 const GACHA_INFO = {
   GACHA_POOL_SIZE: 100,
@@ -196,9 +195,6 @@ export default function Gacha() {
                 debugRolls={debugRolls}
                 debugGacha={debugGacha}
             />
-        
-            <RollInfo />
-
             <GachaResults gachaResults={GACHA_RESULTS} />
         </GachaDisplayContainer>
     );

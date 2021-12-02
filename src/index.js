@@ -2,10 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+
+import RollInfo from './components/Pages/RollInfo/rollInfo';
+import Gacha from './components/Pages/Gacha/gacha';
+import Home from './components/Pages/Home/home';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+      <Routes>
+        <Route path="/roll-info" element={<RollInfo />} />
+        <Route path="/gacha-sim" element={<Gacha />} />
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

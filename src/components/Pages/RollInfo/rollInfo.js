@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import RollInput from './RollInput/rollInput';
 import RollOutput from './RollOutput/rollOutput';
 
-export default function AddGachaInfo() {
+export default function AddRollInfo() {
     const [toggleInputDisplay, setToggleInputDisplay] = useState(false);
     const [input, setInput] = useState("");
 
