@@ -30,22 +30,6 @@ export default function RollOutput(props) {
         setOutput(_output);
     }, [props.input]);
 
-    // const displayOutput = output.length > 0 ? output.map((out, index) => {
-    //     return (
-    //         <div key={index}>
-    //             {
-    //                 out.map((o, index) => {
-    //                     return (
-    //                         <ul key={index}>
-    //                             <li>{o}</li>
-    //                         </ul>
-    //                     );
-    //                 })
-    //             }
-    //         </div>
-    //     );
-    // }) : <p>Hi</p>;
-
     const displaySSROutput = output[0]?.map((out, index) => {
         return (
             <DisplayRollOutput key={index}>{out}</DisplayRollOutput>
