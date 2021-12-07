@@ -59,28 +59,29 @@ const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 26%;
-    width: 40%;
+    height: 28%;
+    width: 35%;
 `;
 
 const OutcomeContainer = styled.div`
     border: 1px solid black;
-    margin: 5px 0px;
+    margin: 15px 0px 20px 0px;
     width: 35%;
     text-align: center;
 `;
 
 const RollsContainer = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
     border: 1px solid black;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     width: 70%;
 `;
 
 const SeparationLine = styled.p`
     font-size: 35px;
-    margin: 4px 20px 0px 20px;
+    margin: 4px 20px 5px 20px;
 `;
 
 const RollsDisplay = styled.p`
@@ -91,7 +92,7 @@ const PercentileContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
     border: 1px solid black;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
     width: 60%;
 `;
 
