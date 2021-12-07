@@ -1,5 +1,3 @@
-import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
-
 import Header from './components/Header/header';
 import Footer from './components/Footer/footer';
 import NavMenu from './components/NavMenu/navMenu';

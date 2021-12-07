@@ -17,10 +17,10 @@ export default function GachaInput(props) {
         };
     };
 
-    const textOnChangeHandler = (e) => {
-        const value = e.target.value;
-        setInput(value);
-    };
+    // const textOnChangeHandler = (e) => {
+    //     const value = e.target.value;
+    //     setInput(value);
+    // };
 
     return (
         <div>

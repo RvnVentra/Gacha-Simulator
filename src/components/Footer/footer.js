@@ -10,13 +10,16 @@ export default function Footer() {
 };
 
 const FooterContainer = styled.div`
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     border: 1px solid black;
     height: 40px;
     width: 98vw;
-    margin: 0 auto;
 `;
 
 const Author = styled.p`

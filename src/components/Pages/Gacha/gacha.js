@@ -207,7 +207,7 @@ const GachaDisplayContainer = styled.div`
     align-items: center;
     justify-content: space-evenly;
     border: 1px solid black;
-    margin-bottom: 25px;
-    height: 82.5vh;
+    margin: 25px auto;
+    height: 75.5vh;
     width: 99vw;
 `;

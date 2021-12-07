@@ -26,21 +26,24 @@ const NavDisplay = styled.ul`
     align-items: center;
     justify-content: space-between;
     border: 1px solid black;
+    width: 95%;
+    margin: 0 auto 10px auto;
 `;
 
 const Home = styled.div`
-    margin-left: 0;
+    margin-left: 5px;
 `;
 
 const Other = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    margin-right: 0;
+    margin-right: 5px;
 `;
 
 const NavItems = styled.li`
     list-style: none;
+    margin: 0 5px;
 `;
 
 const NavItem = styled(Link)`
@@ -50,7 +53,7 @@ const NavItem = styled(Link)`
     text-decoration: none;
     border: 1px solid black;
     border-radius: 10px;
-    height: 50px;
+    height: 35px;
     width: 125px;
     
     &:visited {
@@ -58,6 +61,7 @@ const NavItem = styled(Link)`
     };
 
     &:hover, &:focus {
-        color: white;
+        font-style: italic;
+        font-weight: bold;
     };
 `;
