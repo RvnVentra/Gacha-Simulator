@@ -24,6 +24,7 @@ export default function GachaInput(props) {
             }, 2500);
             setErr(null);
         } else {
+            setInput("");
             setErr("Incorrect File/Document type. We only accept Text document/file");
         };
     };
@@ -35,7 +36,7 @@ export default function GachaInput(props) {
 
     return (
         <RollInputContainer>
-            <input type="file" onChange={fileUploadHandler} />
+            <RollInput type="file" onChange={fileUploadHandler} />
             <ErrorDisplay>{err}</ErrorDisplay>
             <Spinner isLoading={loading} />
             {/* <textarea value={input} onChange={textOnChangeHandler}></textarea> */}
@@ -44,8 +45,14 @@ export default function GachaInput(props) {
 };
 
 const RollInputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
     margin: 25px;
     margin-bottom: 10px;
+`;
+
+const RollInput = styled.input`
+    margin: 0 auto;
 `;
 
 const ErrorDisplay = styled.p`
