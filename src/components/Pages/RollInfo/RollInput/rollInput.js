@@ -8,24 +8,30 @@ export default function GachaInput(props) {
 
     const fileUploadHandler = (e) => {
         const file = e.target.files[0];
+        console.log(file);
         
-        if(file?.type === "text/plain") {
-            setLoading(true);
-            const readFile = new FileReader();
-            readFile.readAsText(file);
-            
-            const uploading = setInterval(() => {
-                if(readFile.readyState === 2) {
-
-                    setInput(readFile.result);
-                };
-                clearInterval(uploading);
-                setLoading(false);
-            }, 2500);
-            setErr(null);
+        if(file) {
+            if(file.type === "text/plain") {
+                setLoading(true);
+                const readFile = new FileReader();
+                readFile.readAsText(file);
+                
+                const uploading = setInterval(() => {
+                    if(readFile.readyState === 2) {
+    
+                        setInput(readFile.result);
+                    };
+                    clearInterval(uploading);
+                    setLoading(false);
+                }, 2500);
+                setErr(null);
+            } else {
+                setInput("");
+                setErr("Incorrect File/Document type. We only accept Text document/file");
+            };
         } else {
             setInput("");
-            setErr("Incorrect File/Document type. We only accept Text document/file");
+            setErr(null);
         };
     };
 
@@ -47,7 +53,7 @@ export default function GachaInput(props) {
 const RollInputContainer = styled.div`
     display: flex;
     flex-direction: column;
-    margin: 25px;
+    margin: 25px 0;
     margin-bottom: 10px;
 `;
 
