@@ -68,7 +68,7 @@ export default function RollOutput(props) {
 };
 
 const OutputContainer = styled.div`
-    visibility: ${props => props.input.length === 0 && "hidden"};
+    visibility: ${ props => props.input.length === 0 && "hidden" };
     border: 1px solid black;
     width: 95%;
     height: 80%;
