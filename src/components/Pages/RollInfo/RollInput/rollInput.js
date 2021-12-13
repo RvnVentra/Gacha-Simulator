@@ -1,10 +1,14 @@
+import { useState } from "react";
+import styled from "styled-components";
+
 export default function GachaInput(props) {
     const { input, setInput } = props;
+    const [ err, setErr ] = useState(null);
 
     const fileUploadHandler = (e) => {
         const file = e.target.files[0];
         
-        if(file.type === "text/plain") {
+        if(file?.type === "text/plain") {
             const readFile = new FileReader();
             readFile.readAsText(file);
             
@@ -14,6 +18,9 @@ export default function GachaInput(props) {
                 };
                 clearInterval(uploading);
             }, 2500);
+            setErr(null);
+        } else {
+            setErr("Incorrect File/Document type. We only accept Text document/file");
         };
     };
 
@@ -23,9 +30,20 @@ export default function GachaInput(props) {
     // };
 
     return (
-        <div>
-            <input type="file" onChange={fileUploadHandler}></input>
+        <RollInputContainer>
+            <input type="file" onChange={fileUploadHandler} />
+            <ErrorDisplay>{err}</ErrorDisplay>
             {/* <textarea value={input} onChange={textOnChangeHandler}></textarea> */}
-        </div>
+        </RollInputContainer>
     );
 };
+
+const RollInputContainer = styled.div`
+    margin: 25px;
+    margin-bottom: 10px;
+`;
+
+const ErrorDisplay = styled.p`
+    color: red;
+    margin-top: 15px;
+`;

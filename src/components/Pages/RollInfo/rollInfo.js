@@ -29,8 +29,9 @@ const RollInfoDisplay = styled.div`
     flex-direction: column;
     align-items: center;
     border: 1px solid black;
-    height: 40%;
-    width: 40%;
+    height: 75.5vh;
+    width: 99vw;
+    margin: 25px auto;
 `;
 
 const ToggleDisplay = styled.button`
@@ -54,9 +55,9 @@ const RollDisplay = styled.div`
     display: ${props => !props.toggleDisplay ? "none" : "flex"};
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
     margin-top: 5px;
     border: 1px solid black;
     width: 90%;
+    height: 80%;
     overflow-x: scroll;
 `;
