@@ -8,6 +8,7 @@ export default function GachaInput(props) {
 
     const fileUploadHandler = (e) => {
         const file = e.target.files[0];
+
         console.log(file);
         
         if(file) {
@@ -16,22 +17,21 @@ export default function GachaInput(props) {
                 const readFile = new FileReader();
                 readFile.readAsText(file);
                 
-                const uploading = setInterval(() => {
+                setTimeout(() => {
                     if(readFile.readyState === 2) {
-    
                         setInput(readFile.result);
                     };
-                    clearInterval(uploading);
                     setLoading(false);
                 }, 2500);
+
                 setErr(null);
             } else {
                 setInput("");
                 setLoading(true);
-                
-                setInterval(() => {
-                    setLoading(false);
+                localStorage.removeItem("Items");
+                setTimeout(() => {
                     setErr("Incorrect File/Document type.");
+                    setLoading(false);
                 }, 2500);
             };
         } else {
@@ -67,8 +67,7 @@ const RollInput = styled.input`
 `;
 
 const ErrorDisplay = styled.p`
-    position: fixed;
     color: red;
-    margin-top: 35px;
+    margin-top: 15px;
 `;
 

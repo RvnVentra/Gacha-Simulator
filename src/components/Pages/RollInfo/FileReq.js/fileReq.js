@@ -19,9 +19,7 @@ export default function FileReq(props) {
         <FileReqContainer isLoading={props.isLoading}>
             <InstructionText>Uploaded document/file must be in text and should follow the format shown below for it to be read properly</InstructionText>
             <InstructionText>&#8595;</InstructionText>
-            <InputExample readOnly={true}>
-                {EXAMPLE_TEXT}
-            </InputExample>
+            <InputExample readOnly={true} defaultValue={EXAMPLE_TEXT} />
         </FileReqContainer>
     );
 };

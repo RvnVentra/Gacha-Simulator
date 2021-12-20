@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled, { keyframes } from "styled-components";
 
 import RollInput from './RollInput/rollInput';
@@ -9,6 +9,16 @@ export default function AddRollInfo() {
     const [toggleInputDisplay, setToggleInputDisplay] = useState(false);
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(null);
+
+    useEffect(() => {
+        const _inputs = JSON.parse(localStorage.getItem("Items"));
+
+        if(input && input.length > 0 && input !== JSON.stringify(_inputs)) {
+            localStorage.setItem("Items", JSON.stringify(input));
+        };
+
+        setInput(_inputs);
+    }, [input]);
 
     const toggleHandler = () => {
         setToggleInputDisplay(!toggleInputDisplay);
