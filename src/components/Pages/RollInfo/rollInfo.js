@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import FileReq from './FileReq.js/fileReq';
 
 import RollInput from './RollInput/rollInput';
 import RollOutput from './RollOutput/rollOutput';
@@ -12,13 +13,15 @@ export default function AddRollInfo() {
         setToggleInputDisplay(!toggleInputDisplay);
     };
 
+    const toggleDisplay = input?.length > 0 ? <RollOutput input={input} /> : <FileReq />;
+
     return (
         <RollInfoDisplay>
             <ToggleDisplay onClick={toggleHandler}>Add Roll Information</ToggleDisplay>
 
             <RollDisplay toggleDisplay={toggleInputDisplay}>
                 <RollInput input={input} setInput={setInput}/>
-                <RollOutput input={input} />
+                {toggleDisplay}
             </RollDisplay>
         </RollInfoDisplay>
     );
