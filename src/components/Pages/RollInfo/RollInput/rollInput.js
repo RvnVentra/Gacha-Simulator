@@ -1,10 +1,10 @@
 import { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export default function GachaInput(props) {
-    const { input, setInput } = props;
-    const [ err, setErr ] = useState(null);
-    const [ loading, setLoading ] = useState(null);
+    const { input, setInput,  setLoading } = props;
+    const [err, setErr] = useState(null);
+    
 
     const fileUploadHandler = (e) => {
         const file = e.target.files[0];
@@ -49,7 +49,7 @@ export default function GachaInput(props) {
         <RollInputContainer>
             <RollInput type="file" onChange={fileUploadHandler} />
             <ErrorDisplay>{err}</ErrorDisplay>
-            <Spinner isLoading={loading} />
+            
             {/* <textarea value={input} onChange={textOnChangeHandler}></textarea> */}
         </RollInputContainer>
     );
@@ -72,31 +72,3 @@ const ErrorDisplay = styled.p`
     margin-top: 35px;
 `;
 
-// From https://www.w3docs.com/snippets/css/how-to-create-loading-spinner-with-css.html#example-of-creating-a-loading-spinner-9
-const Spin = keyframes`
-    0% {
-        transform: translate3d(-50%, -50%, 0) rotate(0deg);
-    }
-    100% {
-        transform: translate3d(-50%, -50%, 0) rotate(360deg);
-    };
-`;
-
-const Spinner = styled.div`
-    visibility: ${ props => !props.isLoading && "hidden" };
-    &::before {
-        animation: ${Spin} 1.5s linear infinite;
-        animation-play-state: inherit;
-        border: solid 5px #cfd0d1;
-        border-bottom-color: #1c87c9;
-        border-radius: 50%;
-        content: "";
-        height: 40px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate3d(-50%, -50%, 0);
-        width: 40px;
-        will-change: transform;
-    };
-`;

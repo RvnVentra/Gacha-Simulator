@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function RollOutput(props) {
     const [output, setOutput] = useState([]);
-    const { input } = props;
+    const { input, isLoading } = props;
 
     useEffect(() => {
         let ssr = [], sr = [], r = [], _input = [], _output = [];
@@ -50,7 +50,7 @@ export default function RollOutput(props) {
     });
 
     return (
-        <OutputContainer input={input}>
+        <OutputContainer input={input}  isLoading={isLoading}>
             <DisplayContainer>
                 <RarityHeader>SSR</RarityHeader>
                 {displaySSROutput}
@@ -68,7 +68,7 @@ export default function RollOutput(props) {
 };
 
 const OutputContainer = styled.div`
-    visibility: ${ props => props.input.length === 0 && "hidden" };
+    visibility: ${ props => (props.input.length === 0 || props.isLoading) && "hidden" };
     border: 1px solid black;
     width: 95%;
     height: 80%;

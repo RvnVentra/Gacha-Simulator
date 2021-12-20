@@ -14,9 +14,9 @@ const EXAMPLE_TEXT = `
     R: Bronze Sword, Bronze Dagger, Bronze Bow
 `;
 
-export default function FileReq() {
+export default function FileReq(props) {
     return (
-        <FileReqContainer>
+        <FileReqContainer isLoading={props.isLoading}>
             <InstructionText>Uploaded document/file must be in text and should follow the format shown below for it to be read properly</InstructionText>
             <InstructionText>&#8595;</InstructionText>
             <InputExample readOnly={true}>
@@ -27,10 +27,11 @@ export default function FileReq() {
 };
 
 const FileReqContainer = styled.div`
+    visibility: ${ props => props.isLoading && "hidden" };
     border-top: 1px dotted black;
     border-bottom: 1px dotted black;
-    margin: 55px 0;
-    padding: 20px 0;
+    margin: 45px 0;
+    padding: 45px 0;
 `;
 
 const InstructionText = styled.p`

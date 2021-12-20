@@ -1,26 +1,27 @@
 import { useState } from 'react';
-import styled from 'styled-components';
-import FileReq from './FileReq.js/fileReq';
+import styled, { keyframes } from "styled-components";
 
 import RollInput from './RollInput/rollInput';
 import RollOutput from './RollOutput/rollOutput';
+import FileReq from './FileReq.js/fileReq';
 
 export default function AddRollInfo() {
     const [toggleInputDisplay, setToggleInputDisplay] = useState(false);
     const [input, setInput] = useState("");
+    const [loading, setLoading] = useState(null);
 
     const toggleHandler = () => {
         setToggleInputDisplay(!toggleInputDisplay);
     };
 
-    const toggleDisplay = input?.length > 0 ? <RollOutput input={input} /> : <FileReq />;
+    const toggleDisplay = input?.length > 0 ? <RollOutput input={input} isLoading={loading} /> : <FileReq isLoading={loading} />;
 
     return (
         <RollInfoDisplay>
             <ToggleDisplay onClick={toggleHandler}>Add Roll Information</ToggleDisplay>
-
+            <Spinner isLoading={loading} />
             <RollDisplay toggleDisplay={toggleInputDisplay}>
-                <RollInput input={input} setInput={setInput}/>
+                <RollInput input={input} setInput={setInput} setLoading={setLoading} />
                 {toggleDisplay}
             </RollDisplay>
         </RollInfoDisplay>
@@ -63,4 +64,33 @@ const RollDisplay = styled.div`
     width: 90%;
     height: 80%;
     overflow-x: scroll;
+`;
+
+// From https://www.w3docs.com/snippets/css/how-to-create-loading-spinner-with-css.html#example-of-creating-a-loading-spinner-9
+const Spin = keyframes`
+    0% {
+        transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) rotate(360deg);
+    };
+`;
+
+const Spinner = styled.div`
+    visibility: ${ props => !props.isLoading && "hidden" };
+    &::before {
+        animation: ${Spin} 1.5s linear infinite;
+        animation-play-state: inherit;
+        border: solid 5px #cfd0d1;
+        border-bottom-color: #1c87c9;
+        border-radius: 50%;
+        content: "";
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        width: 40px;
+        will-change: transform;
+    };
 `;
