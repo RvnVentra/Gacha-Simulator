@@ -27,7 +27,12 @@ export default function GachaInput(props) {
                 setErr(null);
             } else {
                 setInput("");
-                setErr("Incorrect File/Document type. We only accept Text document/file");
+                setLoading(true);
+                
+                setInterval(() => {
+                    setLoading(false);
+                    setErr("Incorrect File/Document type.");
+                }, 2500);
             };
         } else {
             setInput("");
@@ -62,8 +67,9 @@ const RollInput = styled.input`
 `;
 
 const ErrorDisplay = styled.p`
+    position: fixed;
     color: red;
-    margin-top: 15px;
+    margin-top: 35px;
 `;
 
 // From https://www.w3docs.com/snippets/css/how-to-create-loading-spinner-with-css.html#example-of-creating-a-loading-spinner-9
