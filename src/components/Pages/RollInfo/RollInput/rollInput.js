@@ -28,7 +28,7 @@ export default function GachaInput(props) {
             } else {
                 setInput("");
                 setLoading(true);
-                localStorage.removeItem("Items");
+                sessionStorage.removeItem("Items");
                 setTimeout(() => {
                     setErr("Incorrect File/Document type.");
                     setLoading(false);

@@ -28,8 +28,8 @@ const FileReqContainer = styled.div`
     visibility: ${ props => props.isLoading && "hidden" };
     border-top: 1px dotted black;
     border-bottom: 1px dotted black;
-    margin: 45px 0;
-    padding: 45px 0;
+    margin: 15px 0;
+    padding: 55px 0;
 `;
 
 const InstructionText = styled.p`

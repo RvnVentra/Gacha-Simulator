@@ -11,10 +11,10 @@ export default function AddRollInfo() {
     const [loading, setLoading] = useState(null);
 
     useEffect(() => {
-        const _inputs = JSON.parse(localStorage.getItem("Items"));
+        const _inputs = JSON.parse(sessionStorage.getItem("Items"));
 
         if(input && input.length > 0 && input !== JSON.stringify(_inputs)) {
-            localStorage.setItem("Items", JSON.stringify(input));
+            sessionStorage.setItem("Items", JSON.stringify(input));
         };
 
         setInput(_inputs);
