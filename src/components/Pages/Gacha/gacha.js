@@ -3,13 +3,13 @@ import styled from 'styled-components';
 
 import GachaInfo from './GachaInfo/gachaInfo';
 import GachaResults from './GachaResults/gachaResults';
+import SsToString from '../../Common/SessionStorage/convertToString';
 
 const GACHA_INFO = {
   GACHA_POOL_SIZE: 100,
   GACHA_POOL: [],
   SSR_RATE: 4,
   SR_RATE: 36,
-  DEBUG_ROLLS_COUNT: 100,
   GACHA_RESULTS: [],
 };
 
@@ -18,7 +18,6 @@ const {
   GACHA_POOL,
   SSR_RATE,
   SR_RATE,
-  DEBUG_ROLLS_COUNT,
   GACHA_RESULTS
 } = GACHA_INFO;
 
@@ -40,6 +39,7 @@ export default function Gacha() {
         totalR: 0,
     });
     const [outcome, setOutcome] = useState(null);
+    const [rollInfo, setRollInfo] = useState(null);
 
     //Fill an array with the four numbers representing SSR pulls
     const [ssrPool, setSSRPool] = useState([]);
@@ -78,6 +78,23 @@ export default function Gacha() {
         return isSR;
     };
 
+    const GetRollInfoFromItems = () => {
+        let input = JSON.parse(sessionStorage.getItem("Items"));
+        let _rollInfo = SsToString((input));
+
+        if(input?.length > 0) {
+            setRollInfo(_rollInfo);
+            setRoll(null);
+            setTotalRolls(0);
+            setTotalCategorizedRolls({
+                totalSSR: 0,
+                totalSR: 0,
+                totalR: 0,
+            });
+            GACHA_RESULTS.length = 0;
+            setOutcome(null);
+        };
+    };
 
     const rollSingleGachaHandler = () => {
         const r = numberGenerator(GACHA_POOL_SIZE);
@@ -149,41 +166,6 @@ export default function Gacha() {
         setTotalCategorizedRolls(_totalCategorizedRolls);
     };
 
-    const debugRolls = () => {
-        for(let i = 0; i < DEBUG_ROLLS_COUNT; i++) {
-            const debugSSR = isRollSSR(GACHA_POOL);
-            const _debugSSR = [...new Set(debugSSR)];
-            const debugSR = isRollSR(GACHA_POOL);
-            const _debugSR = [...new Set(debugSR)];
-            
-            if(_debugSSR.length !== SSR_RATE) {
-                console.log("SSR pool is incorrect");
-                break;
-            };
-            if(_debugSR.length !== SR_RATE) {
-                console.log("SR pool is incorrect");
-                break;
-            };
-        };
-    };
-
-    const debugGacha = function() {
-        for(let i = 0; i < DEBUG_ROLLS_COUNT; i++) {
-            const r = numberGenerator(GACHA_POOL_SIZE);
-            const _ssrPool = isRollSSR(GACHA_POOL);
-            const _srPool = isRollSR(GACHA_POOL);
-        
-            setRoll(r);
-            if(_ssrPool.includes(r)) {
-                setOutcome("You've rolled a SSR!");
-            } else if (_srPool.includes(r)) {
-                setOutcome("You've rolled a SR!");
-            } else {
-                setOutcome("You've rolled a R!");
-            };
-        };
-    };
-
     return (
         <GachaDisplayContainer>
             <GachaInfo
@@ -192,9 +174,8 @@ export default function Gacha() {
                 outcome={outcome}
                 rollSingleGacha={rollSingleGachaHandler}
                 rollTenfoldGacha={rollTenfoldGachaHandler}
-                debugRolls={debugRolls}
-                debugGacha={debugGacha}
             />
+            <button onClick={GetRollInfoFromItems}>Use Roll Info as Rolls</button>
             <GachaResults gachaResults={GACHA_RESULTS} />
         </GachaDisplayContainer>
     );
